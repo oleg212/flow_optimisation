@@ -39,6 +39,16 @@ struct flow
         }
     }
 
+    size_t size() const
+    {
+        return crosses.size();
+    }
+
+    double operator [](size_t idx) const
+    {
+        return crosses[idx].time;
+    }
+
     friend std::ostream& operator<<(std::ostream& os, const flow& f)
     {
         if (f.level == 0)
