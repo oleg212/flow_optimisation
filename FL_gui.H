@@ -45,7 +45,7 @@ public:
         btn_magic = new Fl_Button(580, 210, 110, 30, "Авто группировка");
 
         output_area = new Fl_Text_Display(110, 290, 300, 200, "Сгруппированный\nпоток");
-        log_area = new Fl_Text_Display(450, 290, 300, 200, "Лог");
+        log_area = new Fl_Text_Display(450, 290, 350, 200, "Лог");
 
         btn_group1->callback(group1_cb, this);
         btn_group2->callback(group2_cb, this);
@@ -148,15 +148,15 @@ public:
 
         if (!potok_in.crosses.empty()) {
             bool res_1 = solver.criterion_3(potok_in, alpha);
-            gui->log("Входной поток, критерий 3: " + std::string(res_1 ? "True" : "False"));
+            gui->log("Входной поток, Критерий серий: " + std::string(res_1 ? "True" : "False"));
             bool res_2 = solver.criterion_4(potok_in, alpha);
-            gui->log("Входной поток, критерий 4: " + std::string(res_2 ? "True" : "False"));
+            gui->log("Входной поток, Критерий инверсий: " + std::string(res_2 ? "True" : "False"));
         }
         if (!potok_out.crosses.empty()) {
             bool res_1 = solver.criterion_3(potok_out, alpha);
-            gui->log("Выходной поток, критерий 3: " + std::string(res_1 ? "True" : "False"));
+            gui->log("Выходной поток, Критерий серий: " + std::string(res_1 ? "True" : "False"));
             bool res_2 = solver.criterion_4(potok_out, alpha);
-            gui->log("Выходной поток, критерий 4: " + std::string(res_2 ? "True" : "False"));
+            gui->log("Выходной поток, Критерий инверсий: " + std::string(res_2 ? "True" : "False"));
         }
     }
 
@@ -219,7 +219,7 @@ public:
         }
 
         if (!success) {
-            gui->log("Не судьба: не удалось достичь независимости при h <= 10.");
+            gui->log("не удалось достичь независимости при h <= 10.");
         }
     }
 

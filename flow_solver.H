@@ -30,7 +30,7 @@ class flow_solver
         return diff;
     }
 
-    const flow advanced_batches_compute_base(const flow& f, const double& C = 2)
+    const flow advanced_batches_compute_base(const flow& f, const double& C = 1.5)
     {
         flow result;
 
@@ -55,7 +55,7 @@ public:
 
         std::vector<cross>& r_crosses = result.crosses;
         const std::vector<cross>& f_crosses = f.crosses;
-        r_crosses.emplace_back(-1, f_crosses[0].n);
+        r_crosses.emplace_back(f_crosses[0].time, f_crosses[0].n);
 
         for (size_t i = 1; i < f_crosses.size(); ++i)
         {
@@ -65,8 +65,7 @@ public:
             }
             else
             {
-                r_crosses.back().time = f_crosses[i - 1].time;
-                r_crosses.emplace_back(-1, f_crosses[i].n);
+                r_crosses.emplace_back(f_crosses[i].time, f_crosses[i].n);
             }
         }
 
